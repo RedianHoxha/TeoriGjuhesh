@@ -1,0 +1,2 @@
+# TeoriGjuhesh
+Automati
