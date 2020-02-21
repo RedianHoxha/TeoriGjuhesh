@@ -40,7 +40,7 @@ namespace TeoriGjuheProjekt
             //System.Console.ReadLine();
 
             Automat a = new Automat();
-            a.KrijoAutomat();
+            a.MbushmeKalime();
             a.AfishoKalime();
              System.Console.ReadLine();
         }

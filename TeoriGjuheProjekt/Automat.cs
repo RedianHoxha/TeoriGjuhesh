@@ -60,7 +60,28 @@ namespace TeoriGjuheProjekt
 
         }
 
-   
+        public void MbushmeKalime(){
+                  Automati = new ArrayList();
+                  int counter = 0;
+                  string line;
+
+                // Read the file and display it line by line.  
+                System.IO.StreamReader file = new System.IO.StreamReader(@"c:\Prov\Kalimet.txt");
+                    while ((line = file.ReadLine()) != null)
+                    {
+                string gjendje1, shkralfabet, gjendjefund;
+                gjendje1 = line.Substring(0, 2);
+                shkralfabet = line.Substring(2, 1);
+                gjendjefund = line.Substring(3,2);
+                Kalimet kalim = new Kalimet(counter, gjendje1, shkralfabet, gjendjefund);
+                        Automati.Add(kalim);
+                        counter++;
+                    }
+
+            file.Close();
+
+        }
+
 
         public void AfishoKalime()
         {
@@ -127,9 +148,9 @@ namespace TeoriGjuheProjekt
             {
 
                 alfabetobjekt = (Alfabet)i;
-                string alfabet = alfabetobjekt.
+                //string alfabet = alfabetobjekt.
 
-                ArrayList gjendjepasalfabetiti = Kontrollalfabet(alfabet, gjendjeperkontrollalfabeti);
+               //  ArrayList gjendjepasalfabetiti = Kontrollalfabet(alfabet, gjendjeperkontrollalfabeti);
             }
        
 
