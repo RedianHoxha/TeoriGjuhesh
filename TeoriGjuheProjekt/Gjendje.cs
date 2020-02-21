@@ -11,6 +11,12 @@ namespace TeoriGjuheProjekt
     {
 
         public ArrayList gjendje { get; set; }
+
+        public Gjendje(ArrayList gjendjet)
+        {
+            gjendje = gjendjet;
+        }
+        public Gjendje(){}
         public void FutGJendjet()
         {
             gjendje = new ArrayList();

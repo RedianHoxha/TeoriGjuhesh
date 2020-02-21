@@ -11,6 +11,13 @@ namespace TeoriGjuheProjekt
     {
 
         public ArrayList alfabeti { get; set; }
+
+        public Alfabet(ArrayList alfabet)
+        {
+            alfabeti = alfabet;
+        }
+
+        public Alfabet() { }
         public void MbushMeShkronja()
         {
             alfabeti = new ArrayList();
@@ -38,14 +45,11 @@ namespace TeoriGjuheProjekt
             return shkronjaalfa;
         }
 
-        public void Afisho(Alfabet alf)
-        {
-    //       return alf.getshkronja();
-        }
+    //    public void Afisho(Alfabet alf)
+    //    {
+    ////       return alf.getshkronja();
+    //    }
  
-
-
-
         public void AfishoAlfabet()
         {
 
