@@ -11,6 +11,7 @@ namespace TeoriGjuheProjekt
     {
 
         public ArrayList gjendje { get; set; }
+       /// public IEnumerator enumerator{get; set;}
 
         public Gjendje(ArrayList gjendjet)
         {
@@ -25,7 +26,7 @@ namespace TeoriGjuheProjekt
             string line;
 
             // Read the file and display it line by line.  
-            System.IO.StreamReader file = new System.IO.StreamReader(@"c:\Prov\Gjendje.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Github\TeoriGjuhesh\TeoriGjuheProjekt\Prov\Gjendje.txt");
             while ((line = file.ReadLine()) != null)
             {
                 gjendje.Add(line);

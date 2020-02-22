@@ -27,21 +27,25 @@ namespace TeoriGjuheProjekt
             //// Suspend the screen.  
             //System.Console.ReadLine();
 
-            //Alfabet a1 = new Alfabet();
-            //a1.MbushMeShkronja();
-            //a1.AfishoAlfabet();
+            Alfabet a1 = new Alfabet();
+            a1.MbushMeShkronja();
+           // a1.AfishoAlfabet();
             //string a=a1.getshkronja(0);
             //Console.WriteLine(a);
             //System.Console.ReadLine();
 
-            //Gjendje gj1 = new Gjendje();
-            //gj1.FutGJendjet();
+            Gjendje gj1 = new Gjendje();
+            gj1.FutGJendjet();
             //gj1.AfishoGjendjet();
             //System.Console.ReadLine();
 
             Automat a = new Automat();
             a.MbushmeKalime();
-            a.AfishoKalime();
+            //a.AfishoKalime();
+
+            //a.Konverto(gj1,a1);
+            a.Konvertohappashapi(gj1,a1);
+
              System.Console.ReadLine();
         }
     }
