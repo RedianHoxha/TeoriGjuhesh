@@ -10,43 +10,80 @@ namespace TeoriGjuheProjekt
     {
         static void Main(string[] args)
         {
-            //int counter = 0;
-            //string line;
+            string _gjendjeNisje = string.Empty, _characterAlfabet = string.Empty, _gjendjeFundore = string.Empty;
+            List<string> _kalimetMeGjendjeNisjeEdheGjendjeFundoreTeNJejte = new List<string>();
+            List<string> _kalimetAfterConverting = new List<string>();
 
-            //// Read the file and display it line by line.  
-            //System.IO.StreamReader file =
-            //    new System.IO.StreamReader(@"c:\Prov\test.txt");
-            //while ((line = file.ReadLine()) != null)
-            //{
-            //    System.Console.WriteLine(line);
-            //    counter++;
-            //}
+            List<string> _alfabetiCharacters = new Alfabet().MbushMeShkronja();
 
-            //file.Close();
-            //System.Console.WriteLine("There were {0} lines.", counter);
-            //// Suspend the screen.  
-            //System.Console.ReadLine();
+            List<string> _gjendjeList = new Gjendje().FutGJendjet();
 
-            Alfabet a1 = new Alfabet();
-            a1.MbushMeShkronja();
-           // a1.AfishoAlfabet();
-            //string a=a1.getshkronja(0);
-            //Console.WriteLine(a);
-            //System.Console.ReadLine();
+            List<string> _kalimetList = new Kalimet().MbushmeKalime();
 
-            Gjendje gj1 = new Gjendje();
-            gj1.FutGJendjet();
-            //gj1.AfishoGjendjet();
-            //System.Console.ReadLine();
+            for (int i = 0; i < _kalimetList.Count(); i++)
+            {
+                string _kalim = _kalimetList[i];
+                _gjendjeNisje = _kalim.Substring(0, 2);
+                _characterAlfabet = _kalim.Substring(2, 1);
+                _gjendjeFundore = _kalim.Substring(3, 2);
 
-            Automat a = new Automat();
-            a.MbushmeKalime();
-            //a.AfishoKalime();
+                if (_gjendjeNisje.Equals(_gjendjeFundore))
+                {
+                    _kalimetMeGjendjeNisjeEdheGjendjeFundoreTeNJejte.Add(_kalim);
+                    _kalimetList.Remove(_kalim); // heq ato qe jane te njejta
+                    i--;
+                }
 
-            //a.Konverto(gj1,a1);
-            a.Konvertohappashapi(gj1,a1);
+                if (_characterAlfabet.ToLower().Equals("e"))
+                {
+                    _kalimetAfterConverting.AddRange(ChangeEpsilonToAlphabetCharacters(_kalim, _alfabetiCharacters));
+                }
+            }
+            _kalimetList.RemoveAll(x => x.Contains("e"));
+            _kalimetList.AddRange(_kalimetAfterConverting);
 
-             System.Console.ReadLine();
+
+            for (int i = 0; i < _kalimetList.Count(); i++)
+            {
+                string _kalim = _kalimetList[i];
+                _gjendjeNisje = _kalim.Substring(0, 2);
+                _characterAlfabet = _kalim.Substring(2, 1);
+                _gjendjeFundore = _kalim.Substring(3, 2);
+
+                List<string> _listWithoutFirstKalim = _kalimetList.Where(x => x.ToString() != _kalim).ToList();
+                for (int j = 0; j < _listWithoutFirstKalim.Count(); j++)
+                {
+                    string _kalimSecond = _listWithoutFirstKalim[j];
+                    if (_gjendjeFundore.Equals(_kalimSecond.Substring(0, 2)) && _characterAlfabet.Equals(_kalimSecond.Substring(2, 1)))
+                    {
+                        _kalimetList.Add($"{_gjendjeNisje}{_characterAlfabet}{_kalimSecond.Substring(3, 2)}");
+
+                    }
+                }
+            }
+            _kalimetList.AddRange(_kalimetMeGjendjeNisjeEdheGjendjeFundoreTeNJejte);
+            List<string> _listWithoutRepetition = _kalimetList.Distinct().ToList();
+            foreach (string _kalimNew in _listWithoutRepetition)
+            {
+                Console.WriteLine($"{_kalimNew.Substring(0, 2)} --- {_kalimNew.Substring(2, 1)} ---  { _kalimNew.Substring(3, 2)}");
+            }
+
+
+
+            System.Console.ReadLine();
+        }
+
+        public static List<string> ChangeEpsilonToAlphabetCharacters(string _kalim, List<string> _alphabetCharacters)
+        {
+            List<string> _kalimeConvertedList = new List<string>();
+            string _kalimLocal = string.Empty;
+            foreach (string _character in _alphabetCharacters.Where(x => x != "e"))
+            {
+                _kalimLocal = _kalim.Replace("e", _character);
+                _kalimeConvertedList.Add(_kalimLocal);
+            }
+
+            return _kalimeConvertedList;
         }
     }
 }

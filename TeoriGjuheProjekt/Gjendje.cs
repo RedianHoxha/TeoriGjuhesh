@@ -10,48 +10,46 @@ namespace TeoriGjuheProjekt
     class Gjendje
     {
 
-        public ArrayList gjendje { get; set; }
-       /// public IEnumerator enumerator{get; set;}
+        public List<String> _gjendje { get; set; }
+        /// public IEnumerator enumerator{get; set;}
 
-        public Gjendje(ArrayList gjendjet)
+        public Gjendje(List<String> gjendjet)
         {
-            gjendje = gjendjet;
+            _gjendje = gjendjet;
         }
-        public Gjendje(){}
-        public void FutGJendjet()
+        public Gjendje() { }
+        public List<String> FutGJendjet()
         {
-            gjendje = new ArrayList();
+            _gjendje = new List<String>();
 
             int counter = 0;
             string line;
 
             // Read the file and display it line by line.  
-            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Github\TeoriGjuhesh\TeoriGjuheProjekt\Prov\Gjendje.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\UpWork\Gjendje.txt");
             while ((line = file.ReadLine()) != null)
             {
-                gjendje.Add(line);
+                _gjendje.Add(line);
                 counter++;
             }
 
             file.Close();
-            System.Console.WriteLine("Automati jone ka {0} Gjendje.", counter);
-
-
+            return _gjendje;
         }
 
         public string getgjendja(int i)
         {
-            string gjendja = gjendje[i].ToString();
+            string gjendja = _gjendje[i].ToString();
             return gjendja;
         }
 
         public void AfishoGjendjet()
-            {
+        {
 
-                foreach (var i in gjendje)
-                {
-                    Console.WriteLine(i);
-                }
+            foreach (var i in _gjendje)
+            {
+                Console.WriteLine(i);
             }
-     }
+        }
+    }
 }

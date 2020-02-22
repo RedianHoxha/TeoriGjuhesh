@@ -7,53 +7,55 @@ using System.Collections;
 
 namespace TeoriGjuheProjekt
 {
-   class Alfabet
+    class Alfabet
     {
 
-        public ArrayList alfabeti { get; set; }
+        public List<String> _alfabeti { get; set; }
 
-        public Alfabet(ArrayList alfabet)
+        public Alfabet(List<String> alfabet)
         {
-            alfabeti = alfabet;
+            _alfabeti = alfabet;
         }
 
         public Alfabet() { }
-        public void MbushMeShkronja()
+        public List<String> MbushMeShkronja()
         {
-            alfabeti = new ArrayList();
+            _alfabeti = new List<String>();
 
             int counter = 0;
             string line;
 
             // Read the file and display it line by line.  
-            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Github\TeoriGjuhesh\TeoriGjuheProjekt\Prov\Alfabet.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\UpWork\Alfabet.txt");
             while ((line = file.ReadLine()) != null)
             {
-                alfabeti.Add(line);
+                _alfabeti.Add(line);
                 counter++;
             }
 
             file.Close();
-            System.Console.WriteLine("Alfabeti i Automatit ka {0} Shkronja.", counter);
-      
+
+            return _alfabeti;
+            // System.Console.WriteLine("Alfabeti i Automatit ka {0} Shkronja.", counter);
+
 
         }
 
-        public  string getshkronja(int i)
+        public string getshkronja(int i)
         {
-            string shkronjaalfa = alfabeti[i].ToString();
+            string shkronjaalfa = _alfabeti[i].ToString();
             return shkronjaalfa;
         }
 
-    //    public void Afisho(Alfabet alf)
-    //    {
-    ////       return alf.getshkronja();
-    //    }
- 
+        //    public void Afisho(Alfabet alf)
+        //    {
+        ////       return alf.getshkronja();
+        //    }
+
         public void AfishoAlfabet()
         {
 
-            foreach (var i in alfabeti)
+            foreach (var i in _alfabeti)
             {
                 Console.WriteLine(i);
             }

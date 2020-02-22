@@ -16,9 +16,10 @@ namespace TeoriGjuheProjekt
         public string gjendjanisjes { get; set; }
         public string alfabetkalimi { get; set; }
         public string gjendjemberritjes { get; set; }
+        public List<String> _kalimet { get; set; }
 
-        public Kalimet(){ }
-        public Kalimet(int id,string gjendjenisjes, string alfabet ,string gjendjemberritje)
+        public Kalimet() { }
+        public Kalimet(int id, string gjendjenisjes, string alfabet, string gjendjemberritje)
         {
             IdKalimi = id;
             gjendjanisjes = gjendjenisjes;
@@ -44,6 +45,30 @@ namespace TeoriGjuheProjekt
             gjendjemberritjes = gj2;
         }
 
+        public List<String> MbushmeKalime()
+        {
+            _kalimet = new List<string>();
+            int counter = 0;
+            string line;
+
+            // Read the file and display it line by line.  
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\UpWork\Kalimettest.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                //string gjendje1, shkralfabet, gjendjefund;
+                //gjendje1 = line.Substring(0, 2);
+                //shkralfabet = line.Substring(2, 1);
+                //gjendjefund = line.Substring(3, 2);
+                //Kalimet kalim = new Kalimet(counter, gjendje1, shkralfabet, gjendjefund);
+                _kalimet.Add(line);
+                counter++;
+            }
+
+            file.Close();
+            return _kalimet;
+
+        }
+
         public string afisho()
         {
             return "Id : " + IdKalimi + " Gjendja1 : " + gjendjanisjes + " Alfabet : " + alfabetkalimi + " Gjendjafund : " + gjendjemberritjes;
@@ -51,5 +76,5 @@ namespace TeoriGjuheProjekt
 
     }
 
-   
+
 }
