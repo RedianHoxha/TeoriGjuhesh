@@ -12,12 +12,12 @@ namespace TeoriGjuheProjekt
         public ArrayList Automati { get; set; }
         public Alfabet alfabetiAutomatit { get; set; }
         public Gjendje gjendjeAutomatit { get; set; }
-        public Automat(ArrayList automat,Alfabet alfabetautomati,Gjendje gjendjeautomati)
+        public Automat(ArrayList automat, Alfabet alfabetautomati, Gjendje gjendjeautomati)
         {
             Automati = automat;
             alfabetiAutomatit = alfabetautomati;
             gjendjeAutomatit = gjendjeautomati;
-          
+
         }
 
         public Automat()
@@ -25,15 +25,15 @@ namespace TeoriGjuheProjekt
         }
 
         public void KrijoAutomat()
-        { 
+        {
             bool mbaroi = true;
             int id = 1;
             Automati = new ArrayList();
             do
             {
-             
+
                 Console.WriteLine("Fusni gjendjen e nisjes");
-                string gj1= Console.ReadLine();
+                string gj1 = Console.ReadLine();
 
                 Console.WriteLine("Fusni shkronjene  alfabetit");
                 string alf = Console.ReadLine();
@@ -51,7 +51,7 @@ namespace TeoriGjuheProjekt
                 Console.WriteLine("Deshironi te fusni kalim tjt?");
                 Console.WriteLine("Nqs po shtyp 'Y' perndryshe 'N'");
                 string Pergjigje = Console.ReadLine();
-                if(Pergjigje.ToUpper()=="N")
+                if (Pergjigje.ToUpper() == "N")
                 {
                     mbaroi = false;
                 }
@@ -60,42 +60,22 @@ namespace TeoriGjuheProjekt
 
         }
 
-        public void MbushmeKalime(){
-                  Automati = new ArrayList();
-                  int counter = 0;
-                  string line;
 
-                // Read the file and display it line by line.  
-                System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Github\TeoriGjuhesh\TeoriGjuheProjekt\Prov\Kalimettest.txt");
-                    while ((line = file.ReadLine()) != null)
-                    {
-                string gjendje1, shkralfabet, gjendjefund;
-                gjendje1 = line.Substring(0, 2);
-                shkralfabet = line.Substring(2, 1);
-                gjendjefund = line.Substring(3,2);
-                Kalimet kalim = new Kalimet(counter, gjendje1, shkralfabet, gjendjefund);
-                        Automati.Add(kalim);
-                        counter++;
-                    }
-
-            file.Close();
-
-        }
 
 
         public void AfishoKalime()
         {
             Kalimet kalimetObject = new Kalimet();
-            
-                foreach( var i in Automati)
-                {
+
+            foreach (var i in Automati)
+            {
                 kalimetObject = (Kalimet)i;
-               Console.WriteLine(kalimetObject.afisho());
+                Console.WriteLine(kalimetObject.afisho());
                 //Console.WriteLine (kalimetObject.gjendjanisjes);
 
-             
-                }
-            
+
+            }
+
         }
 
         //public ArrayList KontrolliEpsilon1(Alfabet alfabetiAutomatit, string kalim,Gjendje GjendjeteAutomatit)
@@ -109,50 +89,50 @@ namespace TeoriGjuheProjekt
 
 
 
-      
+
 
         //    return gjendjetEpsilon;
         //}
 
 
 
-            public void Konverto(Gjendje gjendjetautomatit,Alfabet alfabetiautomatit)
+        public void Konverto(Gjendje gjendjetautomatit, Alfabet alfabetiautomatit)
         {
-            int count=0;
+            int count = 0;
             //kshu do jet alfabeti per kalimin epsilon
-           string epsi="e";
+            string epsi = "e";
             bool ndryshoi = true;
-            Alfabet alfabetobjekt = new Alfabet();
-            ArrayList kontrollieps1 = KontrollEpsilon1(gjendjetautomatit,epsi);//kontrolli 1
-            ArrayList kontrollpasperseritje;
-            do
-            {
-                Gjendje gjendje = new Gjendje(kontrollieps1);
-                kontrollpasperseritje = KontrollEpsilonperseritje(gjendje, epsi);
-                if(kontrollieps1.Equals(kontrollpasperseritje))
-                {
-                    ndryshoi = false;
-                }
+            //Alfabet alfabetobjekt = new Alfabet();
+            //ArrayList kontrollieps1 = KontrollEpsilon1(gjendjetautomatit,epsi);//kontrolli 1
+            //ArrayList kontrollpasperseritje;
+            //do
+            //{
+            //    Gjendje gjendje = new Gjendje(kontrollieps1);
+            //    kontrollpasperseritje = KontrollEpsilonperseritje(gjendje, epsi);
+            //    if(kontrollieps1.Equals(kontrollpasperseritje))
+            //    {
+            //        ndryshoi = false;
+            //    }
 
-            } while (ndryshoi);
+            //} while (ndryshoi);
 
-            Gjendje gjendjeperkontrollalfabeti = new Gjendje(kontrollpasperseritje);//arraylista me gjendjet fillesatre
+            //Gjendje gjendjeperkontrollalfabeti = new Gjendje(kontrollpasperseritje);//arraylista me gjendjet fillesatre
 
-            foreach(var i in alfabetiautomatit.alfabeti)
-            {
-                count++;
-            }
+            //foreach(var i in alfabetiautomatit.alfabeti)
+            //{
+            //    count++;
+            //}
 
 
-            foreach(var i in alfabetiautomatit.alfabeti)//per cdo shkornje te alfabettit 
-            {
+            //foreach(var i in alfabetiautomatit.alfabeti)//per cdo shkornje te alfabettit 
+            //{
 
-                alfabetobjekt = (Alfabet)i;
-                //string alfabet = alfabetobjekt.
+            //    alfabetobjekt = (Alfabet)i;
+            //    //string alfabet = alfabetobjekt.
 
-               //  ArrayList gjendjepasalfabetiti = Kontrollalfabet(alfabet, gjendjeperkontrollalfabeti);
-            }
-       
+            //   //  ArrayList gjendjepasalfabetiti = Kontrollalfabet(alfabet, gjendjeperkontrollalfabeti);
+            //}
+
 
         }
 
@@ -162,10 +142,10 @@ namespace TeoriGjuheProjekt
             Kalimet kalimetObject = new Kalimet();
             ArrayList gjendjeepsilon1prv = new ArrayList();
             Gjendje gjendje;
-            int count=0;
+            int count = 0;
             string gje = "";
             int gjendjapozicion = 1;
-            foreach(var i in gjendjetautomatit.gjendje)
+            foreach (var i in gjendjetautomatit._gjendje)
             {
                 count++;
             }
@@ -184,15 +164,15 @@ namespace TeoriGjuheProjekt
             //        }
             //    }
             //}
-            while(gjendjapozicion<count)
+            while (gjendjapozicion < count)
             {
                 gje = gjendjetautomatit.getgjendja(gjendjapozicion);//per cdo gjendje te automatit bejme 
-                {     
-                        kontrollpernjegjendje(gje, eps);
-                        gjendjapozicion++;
+                {
+                    kontrollpernjegjendje(gje, eps);
+                    gjendjapozicion++;
 
                 }
-                
+
 
 
             }
@@ -204,60 +184,60 @@ namespace TeoriGjuheProjekt
         {
             Gjendje gjendje;
             ArrayList gjendjeeeee = new ArrayList();
-            Kalimet kalimetObject = new Kalimet();
-            foreach (var i in Automati)
-            {
-                kalimetObject = (Kalimet)i;
-                if ( gjen == kalimetObject.gjendjanisjes )
-                {
-                    if (eps == kalimetObject.alfabetkalimi)
-                    {
-                        gjendjeeeee.Add(kalimetObject.gjendjemberritjes.ToString());
-                    }    
+            //Kalimet kalimetObject = new Kalimet();
+            //foreach (var i in Automati)
+            //{
+            //    kalimetObject = (Kalimet)i;
+            //    if ( gjen == kalimetObject.gjendjanisjes )
+            //    {
+            //        if (eps == kalimetObject.alfabetkalimi)
+            //        {
+            //            gjendjeeeee.Add(kalimetObject.gjendjemberritjes.ToString());
+            //        }    
 
-                }
-            }
-            gjendje = new Gjendje(gjendjeeeee);
-            gjendje.AfishoGjendjet();
+            //    }
+            //}
+            //gjendje = new Gjendje(gjendjeeeee);
+            //gjendje.AfishoGjendjet();
 
         }
-        public ArrayList Kontrollalfabet( string alfabet,Gjendje Gjendjeepsilon)
+        public ArrayList Kontrollalfabet(string alfabet, Gjendje Gjendjeepsilon)
         {
             ArrayList gjendjealfabet = new ArrayList();
             Kalimet kalimetObject = new Kalimet();
             Gjendje gjendje = new Gjendje();
 
-                   foreach(var gje in Gjendjeepsilon.gjendje)
+            foreach (var gje in Gjendjeepsilon._gjendje)
+            {
+                foreach (var i in Automati)
+                {
+                    kalimetObject = (Kalimet)i;
+
+                    if (gje == kalimetObject.gjendjanisjes && alfabet == kalimetObject.alfabetkalimi)
                     {
-                        foreach (var i in Automati)
-                        {
-                            kalimetObject = (Kalimet)i;
-
-                             if(gje==kalimetObject.gjendjanisjes && alfabet == kalimetObject.alfabetkalimi)
-                              {
-                                  gjendjealfabet.Add(kalimetObject.gjendjemberritjes.ToString());                                
-                              }
-
-                        }
+                        gjendjealfabet.Add(kalimetObject.gjendjemberritjes.ToString());
                     }
-           
 
-                return gjendjealfabet;
-            
+                }
+            }
+
+
+            return gjendjealfabet;
+
         }
 
-        public ArrayList KontrollEpsilon1(Gjendje GjendjeteAutomatit,string epsilon)
+        public ArrayList KontrollEpsilon1(Gjendje GjendjeteAutomatit, string epsilon)
         {
             ArrayList gjendjeepsilon1 = new ArrayList();
             Kalimet kalimetObject = new Kalimet();
             Gjendje gjendje = new Gjendje();
 
-            foreach(var gjen in GjendjeteAutomatit.gjendje)
+            foreach (var gjen in GjendjeteAutomatit._gjendje)
             {
-                foreach(var i in Automati)
+                foreach (var i in Automati)
                 {
                     kalimetObject = (Kalimet)i;
-                    if(gjen==kalimetObject.gjendjanisjes&& epsilon==kalimetObject.alfabetkalimi)
+                    if (gjen == kalimetObject.gjendjanisjes && epsilon == kalimetObject.alfabetkalimi)
                     {
                         gjendjeepsilon1.Add(kalimetObject.gjendjemberritjes.ToString());
 
@@ -276,7 +256,7 @@ namespace TeoriGjuheProjekt
         //    Kalimet kalimetObject = new Kalimet();
         //    Gjendje gjendje = new Gjendje();
 
-         
+
         //        foreach (var i in Automati)
         //        {
         //            kalimetObject = (Kalimet)i;
@@ -286,7 +266,7 @@ namespace TeoriGjuheProjekt
 
         //            }
         //        }
-            
+
 
         //    return gjendjeepsilon1prov;
 
@@ -298,17 +278,17 @@ namespace TeoriGjuheProjekt
             Kalimet kalimetObject = new Kalimet();
             Gjendje gjendje = new Gjendje();
 
-            foreach (var gjen in gjendjetepsilon1.gjendje)
+            foreach (var gjen in gjendjetepsilon1._gjendje)
             {
                 foreach (var i in Automati)
                 {
                     kalimetObject = (Kalimet)i;
-                    if (gjen == kalimetObject.gjendjanisjes) 
+                    if (gjen == kalimetObject.gjendjanisjes)
                     {
-                        if(epsilon == kalimetObject.alfabetkalimi)
+                        if (epsilon == kalimetObject.alfabetkalimi)
                         {
                             string gjendjare = kalimetObject.gjendjemberritjes;
-                            if (gjendjetepsilon1.gjendje.Contains(gjendjare))
+                            if (gjendjetepsilon1._gjendje.Contains(gjendjare))
                             {
                                 gjendjeepsilonndryshime.Add(kalimetObject.gjendjemberritjes);
                             }
@@ -320,14 +300,14 @@ namespace TeoriGjuheProjekt
                         }
 
                     }
-                 
+
                 }
             }
 
             return gjendjeepsilonndryshime;
 
         }
- 
+
     }
-    
+
 }
