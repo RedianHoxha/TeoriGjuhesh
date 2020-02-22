@@ -164,7 +164,7 @@ namespace TeoriGjuheProjekt
             Gjendje gjendje;
             int count=0;
             string gje = "";
-            int gjendjapozicion = 0;
+            int gjendjapozicion = 1;
             foreach(var i in gjendjetautomatit.gjendje)
             {
                 count++;
@@ -184,26 +184,21 @@ namespace TeoriGjuheProjekt
             //        }
             //    }
             //}
-            while(gjendjapozicion<=count)
+            while(gjendjapozicion<count)
             {
                 gje = gjendjetautomatit.getgjendja(gjendjapozicion);//per cdo gjendje te automatit bejme 
-                {
-                    foreach (var j in Automati)
-                    {
-                        kalimetObject = (Kalimet)j;
+                {     
                         kontrollpernjegjendje(gje, eps);
                         gjendjapozicion++;
 
-
-                    }
                 }
+                
 
 
             }
 
 
         }
-
 
         public void kontrollpernjegjendje(string gjen, string eps)
         {
