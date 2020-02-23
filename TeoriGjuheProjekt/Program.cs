@@ -8,11 +8,13 @@ namespace TeoriGjuheProjekt
 {
     class Program
     {
+        public static List<string> _kalimetMeGjendjeNisjeEdheGjendjeFundoreTeNJejte = new List<string>();
         static void Main(string[] args)
         {
             string _gjendjeNisje = string.Empty, _characterAlfabet = string.Empty, _gjendjeFundore = string.Empty;
-            List<string> _kalimetMeGjendjeNisjeEdheGjendjeFundoreTeNJejte = new List<string>();
+            
             List<string> _kalimetAfterConverting = new List<string>();
+            List<string> _kalimetForRemovingAfterUpdate = new List<string>();
 
             List<string> _alfabetiCharacters = new Alfabet().MbushMeShkronja();
 
@@ -32,15 +34,9 @@ namespace TeoriGjuheProjekt
                     _kalimetMeGjendjeNisjeEdheGjendjeFundoreTeNJejte.Add(_kalim);
                     _kalimetList.Remove(_kalim); // heq ato qe jane te njejta
                     i--;
-                }
-
-                if (_characterAlfabet.ToLower().Equals("e"))
-                {
-                    _kalimetAfterConverting.AddRange(ChangeEpsilonToAlphabetCharacters(_kalim, _alfabetiCharacters));
+                    continue;
                 }
             }
-            _kalimetList.RemoveAll(x => x.Contains("e"));
-            _kalimetList.AddRange(_kalimetAfterConverting);
 
 
             for (int i = 0; i < _kalimetList.Count(); i++)
@@ -57,32 +53,53 @@ namespace TeoriGjuheProjekt
                     if (_gjendjeFundore.Equals(_kalimSecond.Substring(0, 2)) && _characterAlfabet.Equals(_kalimSecond.Substring(2, 1)))
                     {
                         _kalimetList.Add($"{_gjendjeNisje}{_characterAlfabet}{_kalimSecond.Substring(3, 2)}");
-
+                        continue;
+                    }
+                    if(_gjendjeFundore.Equals(_kalimSecond.Substring(0, 2)) && _characterAlfabet.Equals("e"))
+                    {
+                        _kalimetList.Add($"{_gjendjeNisje}{_kalimSecond.Substring(2, 1)}{_kalimSecond.Substring(3, 2)}");
+                        _kalimetList.Add($"{_gjendjeNisje}{_kalimSecond.Substring(2, 1)}{_gjendjeFundore}");
+                        _kalimetForRemovingAfterUpdate.Add(_kalim);
                     }
                 }
+
             }
+            _kalimetList = _kalimetList.Except(_kalimetForRemovingAfterUpdate).OrderBy(x => x.ToString()).ToList();
             _kalimetList.AddRange(_kalimetMeGjendjeNisjeEdheGjendjeFundoreTeNJejte);
             List<string> _listWithoutRepetition = _kalimetList.Distinct().ToList();
-            foreach (string _kalimNew in _listWithoutRepetition)
+            List<string> _listKalimeConverted = ChangeEpsilonToAlphabetCharacters(_listWithoutRepetition);
+            _listWithoutRepetition.AddRange(_listKalimeConverted);
+
+            _listWithoutRepetition.RemoveAll(x => x.Contains("e"));
+
+
+            foreach (string _kalimNew in _listWithoutRepetition.Distinct().OrderBy(x => x.ToString()))
             {
                 Console.WriteLine($"{_kalimNew.Substring(0, 2)} --- {_kalimNew.Substring(2, 1)} ---  { _kalimNew.Substring(3, 2)}");
             }
 
-
-
-            System.Console.ReadLine();
+            Console.ReadLine();
         }
 
-        public static List<string> ChangeEpsilonToAlphabetCharacters(string _kalim, List<string> _alphabetCharacters)
+        public static List<string> ChangeEpsilonToAlphabetCharacters(List<string> _listKalime)
         {
             List<string> _kalimeConvertedList = new List<string>();
+            List<string> _kalimeThatContainsCharacterE = _listKalime.Where(x => x.Contains("e")).ToList();
             string _kalimLocal = string.Empty;
-            foreach (string _character in _alphabetCharacters.Where(x => x != "e"))
-            {
-                _kalimLocal = _kalim.Replace("e", _character);
-                _kalimeConvertedList.Add(_kalimLocal);
-            }
+            List<string> _kalimeThatHaveFirstStateSameWithLastStateSameOfE = new List<string>();
 
+            foreach (string _kalim in _kalimeThatContainsCharacterE)  // q0eq3
+            {
+                if (_kalim.Substring(0, 2).Equals(_kalim.Substring(3, 2)))
+                    continue;
+                _kalimeThatHaveFirstStateSameWithLastStateSameOfE = _listKalime.Where(x => x.StartsWith(_kalim.Substring(3, 2))).ToList();
+                foreach(string _kalimSecond in _kalimeThatHaveFirstStateSameWithLastStateSameOfE) //q3aq3 ,  q3bq3
+                {
+                    _kalimLocal = _kalim.Replace("e", _kalimSecond.Substring(2, 1)); //q0aq3, q0bq3
+                    _kalimeConvertedList.Add(_kalimLocal);
+                }
+                
+            }
             return _kalimeConvertedList;
         }
     }
