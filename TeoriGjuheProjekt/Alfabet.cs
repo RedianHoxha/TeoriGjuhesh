@@ -26,7 +26,7 @@ namespace TeoriGjuheProjekt
             string line;
 
             // Read the file and display it line by line.  
-            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\UpWork\Alfabet.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"..\..\Prov\Alfabet.txt");
             while ((line = file.ReadLine()) != null)
             {
                 _alfabeti.Add(line);

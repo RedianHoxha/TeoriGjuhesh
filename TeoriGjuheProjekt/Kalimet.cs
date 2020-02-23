@@ -52,7 +52,7 @@ namespace TeoriGjuheProjekt
             string line;
 
             // Read the file and display it line by line.  
-            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\UpWork\Kalimettest.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"..\..\Prov\Kalimet.txt");
             while ((line = file.ReadLine()) != null)
             {
                 //string gjendje1, shkralfabet, gjendjefund;

@@ -2,4 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/.vs/TeoriGjuheProjekt/v16/Server/sqlite3
+/.vs/TeoriGjuheProjekt/v16/.suo
 /.vs/TeoriGjuheProjekt/v15
